@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Database Connection Test";
+}
+
+<h1>Database Connection Test</h1>
+
+<div class="alert @(ViewBag.CanConnect != null && ViewBag.CanConnect ? "alert-success" : "alert-danger")">
+    <h4>@ViewBag.Message</h4>
+    <p><strong>Can Connect:</strong> @(ViewBag.CanConnect != null ? ViewBag.CanConnect : "Unknown")</p>
+    <p><strong>Venues Count:</strong> @ViewBag.VenueCount</p>
+    <p><strong>Events Count:</strong> @ViewBag.EventCount</p>
+    <p><strong>Clients Count:</strong> @ViewBag.ClientCount</p>
+    <p><strong>Bookings Count:</strong> @ViewBag.BookingCount</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <h3>Test Actions</h3>
+        <div class="btn-group" role="group">
+            @if (ViewBag.CanConnect != null && ViewBag.CanConnect)
+            {
+                <a asp-action="TestAddVenue" class="btn btn-primary">Test Add Venue</a>
+                <a asp-action="TestAddEvent" class="btn btn-primary">Test Add Event</a>
+                <a asp-action="TestAddClient" class="btn btn-primary">Test Add Client</a>
+                <a asp-action="ClearTestData" class="btn btn-danger">Clear Test Data</a>
+            }
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Go to Home</a>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.CanConnect != null && ViewBag.CanConnect)
+{
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3>Database Schema</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tables</h5>
+                    <ul>
+                        <li><strong>Venues:</strong> VenueId, VenueName, Location, Capacity, ImageUrl</li>
+                        <li><strong>Events:</strong> EventId, EventName, EventDate, Description</li>
+                        <li><strong>Clients:</strong> ClientId, ClientName, Email, PhoneNumber</li>
+                        <li><strong>Bookings:</strong> BookingId, EventId, VenueId, ClientId, BookingDate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "EventEase - Venue Booking System";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome to EventEase</h1>
+    <p class="lead">Your premier venue booking and event management system</p>
+
+    <div class="row mt-5">
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Venues</h5>
+                    <p class="card-text">Manage and view all available venues</p>
+                    <a href="@Url.Action("Index", "Venues")" class="btn btn-primary">View Venues</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Events</h5>
+                    <p class="card-text">Create and manage events</p>
+                    <a href="@Url.Action("Index", "Events")" class="btn btn-primary">View Events</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text">Manage venue bookings</p>
+                    <a href="@Url.Action("Index", "Bookings")" class="btn btn-primary">View Bookings</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Clients</h5>
+                    <p class="card-text">Manage system clients</p> 
+                    <a href="@Url.Action("Index", "Clients")" class="btn btn-primary">View Clients</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3>Quick Stats</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-2">
+                <div class="stat-box p-3 border rounded">
+                    <h4>@ViewBag.VenueCount</h4>
+                    <p>Venues</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="stat-box p-3 border rounded">
+                    <h4>@ViewBag.EventCount</h4>
+                    <p>Events</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="stat-box p-3 border rounded">
+                    <h4>@ViewBag.BookingCount</h4>
+                    <p>Bookings</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="stat-box p-3 border rounded">
+                    <h4>@ViewBag.ClientCount</h4>
+                    <p>Clients</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stat-box {
+        background-color: #f8f9fa;
+        transition: transform 0.2s;
+    }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+    .card {
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+</style>

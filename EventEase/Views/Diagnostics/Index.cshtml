@@ -1,0 +1,62 @@
+﻿ @model dynamic
+
+@{
+    ViewData["Title"] = "System Diagnostics";
+}
+
+<h1>System Diagnostics</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Environment Information</h5>
+    </div>
+    <div class="card-body">
+        <p><strong>Environment:</strong> @Model.Environment</p>
+        <p><strong>Machine Name:</strong> @Model.MachineName</p>
+        <p><strong>Current Time (UTC):</strong> @Model.CurrentTime</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Database Connection</h5>
+    </div>
+    <div class="card-body">
+        <p>@Model.DatabaseConnection</p>
+
+        @if (Model.DatabaseConnection.ToString().Contains("ERROR"))
+        {
+            <div class="alert alert-danger">
+                <h6>Database Connection Failed</h6>
+                <p>Check your Azure SQL Database configuration:</p>
+                <ol>
+                    <li>Firewall settings allowing Azure services</li>
+                    <li>Connection string in Azure Application Settings</li>
+                    <li>Database server is running</li>
+                </ol>
+            </div>
+
+            <form asp-action="ApplyMigrations" method="post">
+                <button type="submit" class="btn btn-warning">Try Applying Migrations</button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-success">
+                Database connection is working correctly!
+            </div>
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Quick Links</h5>
+    </div>
+    <div class="card-body">
+        <a href="/Venues" class="btn btn-primary">Test Venues</a>
+        <a href="/Events" class="btn btn-primary">Test Events</a>
+        <a href="/Clients" class="btn btn-primary">Test Clients</a>
+        <a href="/Bookings" class="btn btn-primary">Test Bookings</a>
+    </div>
+</div>
